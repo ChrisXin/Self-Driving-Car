@@ -23,25 +23,33 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of 6 steps: 
+1. Gray Scale Transformation.
+    ![alt text][image1]
+    This step transforms the image in RGB color space into gray-scale image preparing as the input for Canny Edge Detection.
+2. Gaussian Smoothing 
+    This steps applies Gaussian Filter to the image to reduce the noise and blur the image.
+3. Canny Edge Detection 
+    To produce the edge image, the low_threshold is set to 70 and high_threshold is set to 150.
+4. ROI (Region of Interest) Based Edge Filtering 
+    This step we add mask into to only demonstrate the edges in region of interest.
+5. Hough Transformation
+    Hough Transformation finds the line.
+6. Lane Extrapolation 
+    This helps draw a single line on the left and right lanes by connecting the line segments.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by the following steps:
+    Step1: separating line segments by the sign of their slope ((y2-y1)/(x2-x1)) to decide which segments are part of the left line vs. the right line.  
+    Step2: Find the mean of the slope of each of the lines, and filter out those who are above the tolerance threshold.
+    Step3: Extrapolate to the top and bottom of the lane.
 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+One potential shortcoming would be what would happen when the lane becomes bending in the image. 
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+A possible improvement would be to after the edge image is produced, I need to investigate to use another algorithms or OpenCV library to find the bended line and using some regression algorithm to deteremine the line. 
