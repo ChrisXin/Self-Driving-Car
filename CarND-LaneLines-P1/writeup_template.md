@@ -25,7 +25,6 @@ The goals / steps of this project are the following:
 
 My pipeline consisted of 6 steps: 
 1. Gray Scale Transformation.
-    ![alt text][image1]
     This step transforms the image in RGB color space into gray-scale image preparing as the input for Canny Edge Detection.
 2. Gaussian Smoothing 
     This steps applies Gaussian Filter to the image to reduce the noise and blur the image.
